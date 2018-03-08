@@ -9,6 +9,11 @@ const setRasaClient = () => {
   })
 
   service = (message) => {
+    message = message
+              .toLowerCase()
+              .replace(/[\u00E1\u00E0\u00E2\u00E4]/g, 'a')
+              .replace(/[\u00FA\u00F9\u00FB\u00FC]/g, 'u')
+              .replace(/[\u00F3\u00F2\u00F4\u00F6]/g, 'u')
     let serviceUri = '/parse?q=' + message + '&project=' + config.rasaProject;
     return client.get(serviceUri);
   }
